@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <Container>
       <Content>
+        
         <img src={LogoImg} alt="Logo" />
+
         <button type="button">
             Nova transação
          </button>

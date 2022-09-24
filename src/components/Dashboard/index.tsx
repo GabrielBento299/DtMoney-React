@@ -1,8 +1,14 @@
-import React from 'react'
+import { Container } from './styles';
+
+import Sumary from '../Summary';
+import TransactionsTable from '../TransactionsTable';
 
 const Dashoboard = () => {
   return (
-    <div>Dashoboard</div>
+    <Container>
+        <Sumary />
+        <TransactionsTable />
+    </Container>
   )
 }
 
