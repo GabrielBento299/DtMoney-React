@@ -5,6 +5,7 @@ import { useState } from "react";
 import Dashoboard from "./components/Dashboard";
 import Header from "./components/Header";
 import NewTransactionModal from "./components/newTransactionModal";
+import { TransactionsContext, TransactionsProvider } from "./TransactionsContext";
 
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
     setisNewTransansactionModalOpen(false);
   }
   return (
-    <>
+    <TransactionsProvider>
       <GlobalStyle />
 
         <Header
@@ -32,7 +33,7 @@ const App = () => {
         />
       
         <Dashoboard />
-    </>
+    </TransactionsProvider>
   );
 };
 

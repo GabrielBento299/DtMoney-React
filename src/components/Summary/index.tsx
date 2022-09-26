@@ -3,8 +3,15 @@ import { Container } from './styles';
 import IncomeImage from '../../assets/income.svg';
 import OutComeImage from '../../assets/outcome.svg';
 import TotalImage from '../../assets/total.svg';
+import { useContext } from 'react';
+import { TransactionsContext } from '../../TransactionsContext';
 
 const Sumary = () => {
+  const transactions = useContext(TransactionsContext);
+
+  console.log(transactions)
+
+  
   return (
     <Container>
 

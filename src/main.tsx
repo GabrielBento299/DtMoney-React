@@ -19,15 +19,23 @@ createServer({
           type: 'deposit',
           category: 'Dev',
           amount: '7600',
-          createdAt: new Date('2026-09-22 15:23:00'),      
+          createdAt: new Date('2022-09-22 15:23:00'),      
         },
         {
           id: 2,
+          title: 'Dinheiro',
+          type: 'deposit',
+          category: 'Money',
+          amount: '251500',
+          createdAt: new Date('2022-09-26 16:15:55'),    
+        }, 
+        {
+          id: 3,
           title: 'Alugel',
           type: 'withdraw',
           category: 'Casa',
           amount: '1500',
-          createdAt: new Date('2026-09-10 11:15:55'),      
+          createdAt: new Date('2022-09-10 11:15:55'),      
         },
       ]
     })
