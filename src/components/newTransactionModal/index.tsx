@@ -1,13 +1,14 @@
 import { Container, TransactionTypeContainer, RadioBox } from './styles';
 
-import { FormEvent, useState } from 'react';
+import { useTransactions } from '../../hooks/useTransactions';
 
-import CloseImg from '../../assets/close.svg';
+import { FormEvent, useState } from 'react';
+import Modal from "react-modal";
+
+ import CloseImg from '../../assets/close.svg';
 import IncomeImg from '../../assets/income.svg';
 import OutComeImg from '../../assets/outcome.svg';
 
-import Modal from "react-modal";
-import { api } from '../../services/api';
 Modal.setAppElement("#root");
 
 interface newTransactionModalProps {
@@ -16,24 +17,28 @@ interface newTransactionModalProps {
 }
 
 const NewTransactionModal = ({isOpen, onRequestClose, }: newTransactionModalProps) => {
-  
-  const [type, setType] = useState('deposit');
+  const { createTransaction } = useTransactions();
 
+  const [type, setType] = useState('deposit');
   const [title, setTitle] = useState('');
-  const [value, setValue] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState('');
 
-  function handleCreateNewTransaction(e: FormEvent) {
+  async function handleCreateNewTransaction(e: FormEvent) {
     e.preventDefault();
 
-    const data ={
-      type,
+    await createTransaction({
       title,
-      value,
+      amount,
       category,
-    };
+      type,
+    });
 
-    api.post('/transactions', data)
+    setTitle('');
+    setAmount(0);
+    setCategory('');
+    setType('deposit');
+    onRequestClose();
   }
   
   return (
@@ -64,8 +69,8 @@ const NewTransactionModal = ({isOpen, onRequestClose, }: newTransactionModalProp
           <input 
             type="number" 
             placeholder="Valor"
-            value={value}
-            onChange={({target}) => setValue(Number(target.value))}
+            value={amount}
+            onChange={({target}) => setAmount(Number(target.value))}
           />
 
           <TransactionTypeContainer>
@@ -86,7 +91,7 @@ const NewTransactionModal = ({isOpen, onRequestClose, }: newTransactionModalProp
               activeColor="red"
             >
               <img src={OutComeImg} alt="Saida" />
-              <span>Entrada</span>
+              <span>Saida</span>
             </RadioBox>
           </TransactionTypeContainer>
 

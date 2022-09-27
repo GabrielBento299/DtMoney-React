@@ -5,7 +5,7 @@ import { useState } from "react";
 import Dashoboard from "./components/Dashboard";
 import Header from "./components/Header";
 import NewTransactionModal from "./components/newTransactionModal";
-import { TransactionsContext, TransactionsProvider } from "./TransactionsContext";
+import { TransactionsProvider } from "./hooks/useTransactions";
 
 
 const App = () => {
